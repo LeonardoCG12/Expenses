@@ -56,7 +56,7 @@ class TransactionList extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DateFormat('HH:mm:ss d/MM/y').format(tr.date),
+                      DateFormat('HH:mm d/MM/y').format(tr.date),
                       style: const TextStyle(
                         color: Colors.grey,
                       ),
