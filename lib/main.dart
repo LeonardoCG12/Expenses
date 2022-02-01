@@ -30,9 +30,11 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Quicksand',
             ),
         appBarTheme: Theme.of(context).appBarTheme.copyWith(
-              toolbarTextStyle: Theme.of(context).textTheme.headline6?.apply(
-                    fontFamily: 'OpenSans',
-                  ),
+              titleTextStyle: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
       ),
       home: const HomePage(),
