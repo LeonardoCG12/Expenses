@@ -14,9 +14,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blueGrey,
+      //   appBarTheme: const AppBarTheme(
+      //     color: Color(0xFF125E75),
+      //   ),
+      //   colorScheme: ColorScheme.fromSwatch().copyWith(
+      //     secondary: const Color(0xFF125E75),
+      //   ),
+      // ),
+      theme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: 'Quicksand',
+            ),
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(
+              toolbarTextStyle: Theme.of(context).textTheme.headline6?.apply(
+                    fontFamily: 'OpenSans',
+                  ),
+            ),
+      ),
+      home: const HomePage(),
     );
   }
 }

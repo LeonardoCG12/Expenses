@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Card(
-              color: Colors.blue,
+              // color: Colors.blue,
               child: Text('Gráfico'),
               elevation: 5,
             ),

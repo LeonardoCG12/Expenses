@@ -57,11 +57,11 @@ class _TransactionFormState extends State<TransactionForm> {
               child: const Text(
                 'Nova Transação',
                 style: TextStyle(
-                  color: Colors.purple,
-                ),
+                    // color: Colors.purple,
+                    ),
               ),
               style: TextButton.styleFrom(
-                backgroundColor: Colors.black,
+                // backgroundColor: Colors.black,
                 padding: const EdgeInsets.all(15),
               ),
             ),

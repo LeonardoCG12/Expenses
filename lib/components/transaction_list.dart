@@ -31,17 +31,17 @@ class TransactionList extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple,
+                      // color: Colors.purple,
                       width: 2,
                     ),
                   ),
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    'R\$ ${tr.value.toStringAsFixed(2)}',
+                    'R\$${tr.value.toStringAsFixed(2)}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.purple,
+                      // color: Colors.purple,
                     ),
                   ),
                 ),
@@ -58,8 +58,8 @@ class TransactionList extends StatelessWidget {
                     Text(
                       DateFormat('HH:mm d/MM/y').format(tr.date),
                       style: const TextStyle(
-                        color: Colors.grey,
-                      ),
+                          // color: Colors.grey,
+                          ),
                     ),
                   ],
                 ),
