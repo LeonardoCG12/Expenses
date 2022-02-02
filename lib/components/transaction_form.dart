@@ -38,6 +38,8 @@ class _TransactionFormState extends State<TransactionForm> {
             TextField(
               controller: titleController,
               onSubmitted: (_) => _submitForm(),
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.sentences,
               decoration: const InputDecoration(
                 labelText: 'Título',
               ),

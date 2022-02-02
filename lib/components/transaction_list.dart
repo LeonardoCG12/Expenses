@@ -15,10 +15,12 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 1.8,
+      height: MediaQuery.of(context).size.height / 1.5,
       child: transactions.isEmpty
           ? Container(
-              margin: const EdgeInsets.only(top: 8),
+              margin: const EdgeInsets.only(
+                top: 2,
+              ),
               child: Column(
                 children: [
                   const Text(
@@ -28,7 +30,9 @@ class TransactionList extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 22),
+                    margin: const EdgeInsets.only(
+                      top: 22,
+                    ),
                     height: MediaQuery.of(context).size.height / 2.1,
                     child: Image.asset(
                       'assets/images/waiting.png',
@@ -53,17 +57,17 @@ class TransactionList extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.purple,
+                            color: Theme.of(context).colorScheme.secondary,
                             width: 2,
                           ),
                         ),
                         padding: const EdgeInsets.all(10),
                         child: Text(
                           'R\$${tr.value.toStringAsFixed(2)}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.purple,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ),
@@ -78,7 +82,7 @@ class TransactionList extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            DateFormat('HH:mm d/MM/y').format(tr.date),
+                            DateFormat('HH:mm dd/MM/y').format(tr.date),
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
