@@ -49,8 +49,12 @@ class _HomePageState extends State<HomePage> {
   void _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (_) => TransactionForm(
-        onSubmit: _addTransaction,
+      isScrollControlled: true,
+      builder: (_) => SizedBox(
+        height: MediaQuery.of(context).size.height * 0.882943143812709,
+        child: TransactionForm(
+          onSubmit: _addTransaction,
+        ),
       ),
     );
   }
@@ -59,6 +63,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 6,
         title: const Text('Despesas Pessoais'),
         actions: [
           IconButton(

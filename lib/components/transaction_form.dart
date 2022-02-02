@@ -30,7 +30,7 @@ class _TransactionFormState extends State<TransactionForm> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 6,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -54,17 +54,44 @@ class _TransactionFormState extends State<TransactionForm> {
                 labelText: 'Valor (R\$)',
               ),
             ),
-            TextButton(
-              onPressed: _submitForm,
-              child: const Text(
-                'Nova Transação',
-                style: TextStyle(
-                    // color: Colors.purple,
-                    ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
               ),
-              style: TextButton.styleFrom(
-                // backgroundColor: Colors.black,
-                padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  const Text(
+                    'Nenhuma data selecionada',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: _submitForm,
+                    child: const Text(
+                      'Selecionar Data',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: _submitForm,
+                    child: const Text(
+                      'Nova Transação',
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -27,6 +27,7 @@ class TransactionList extends StatelessWidget {
                     'Nenhuma Transação Cadastrada',
                     style: TextStyle(
                       fontSize: 19,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Container(
@@ -48,48 +49,38 @@ class TransactionList extends StatelessWidget {
                 final tr = transactions[index];
 
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.secondary,
-                            width: 2,
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          'R\$${tr.value.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
+                  elevation: 6,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                    vertical: 8,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: FittedBox(
+                            child: Text('R\$${tr.value.toStringAsFixed(2)}')),
+                      ),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
+                      ),
+                      child: Text(
+                        tr.title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tr.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            DateFormat('HH:mm dd/MM/y').format(tr.date),
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
                       ),
-                    ],
+                      child: Text(DateFormat('HH:mm dd/MM/y').format(tr.date)),
+                    ),
                   ),
                 );
               },
