@@ -31,12 +31,12 @@ class _HomePageState extends State<HomePage> {
     ).toList();
   }
 
-  void _addTransaction(String title, double value) {
+  void _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -46,12 +46,20 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
   }
 
+  void _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) {
+        return tr.id == id;
+      });
+    });
+  }
+
   void _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (_) => SizedBox(
-        height: MediaQuery.of(context).size.height * 0.882943143812709,
+        height: MediaQuery.of(context).size.height * 0.85,
         child: TransactionForm(
           onSubmit: _addTransaction,
         ),
@@ -82,6 +90,7 @@ class _HomePageState extends State<HomePage> {
             ),
             TransactionList(
               transactions: _transactions,
+              onRemove: _removeTransaction,
             ),
           ],
         ),

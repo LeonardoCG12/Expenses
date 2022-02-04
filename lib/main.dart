@@ -59,6 +59,10 @@ class MyApp extends StatelessWidget {
             primary: const Color(0xFF64FFDA),
           ),
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFFCCCCCC),
+        ),
+        errorColor: const Color(0xFFC40000),
       ),
       home: const HomePage(),
     );
