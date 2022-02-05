@@ -12,8 +12,7 @@ class MyApp extends StatelessWidget {
           key: key,
         );
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _childFunc(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
             ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: const Color(0xFF64FFDA),
+            primary: const Color(0xFFCCCCCC),
             onPrimary: const Color(0xFF616161),
             padding: const EdgeInsets.all(15),
             shape: RoundedRectangleBorder(
@@ -56,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-            primary: const Color(0xFF64FFDA),
+            primary: const Color(0xFFCCCCCC),
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -65,6 +64,24 @@ class MyApp extends StatelessWidget {
         errorColor: const Color(0xFFC40000),
       ),
       home: const HomePage(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      builder: (BuildContext context, Widget? child) {
+        final MediaQueryData mediaQuery = MediaQuery.of(context);
+        return MediaQuery(
+          data: mediaQuery.copyWith(
+            textScaleFactor: mediaQuery.textScaleFactor > 1.2
+                ? 1.2
+                : mediaQuery.textScaleFactor,
+          ),
+          child: _childFunc(context),
+        );
+      },
     );
   }
 }

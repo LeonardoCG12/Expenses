@@ -18,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _transactions = [];
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where(
@@ -58,40 +59,86 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) => SizedBox(
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: TransactionForm(
-          onSubmit: _addTransaction,
-        ),
+      builder: (_) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: TransactionForm(
+              onSubmit: _addTransaction,
+            ),
+          )
+        ],
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 6,
-        title: const Text('Despesas Pessoais'),
-        actions: [
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    bool isLandScape = mediaQuery.orientation == Orientation.landscape;
+
+    final appBar = AppBar(
+      elevation: 6,
+      title: const Text('Despesas Pessoais'),
+      actions: [
+        if (isLandScape)
           IconButton(
-            onPressed: () => _openTransactionFormModal(context),
-            icon: const Icon(Icons.add),
-          )
-        ],
-      ),
+            onPressed: () => setState(() {
+              _showChart = !_showChart;
+            }),
+            icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+          ),
+        IconButton(
+          onPressed: () => _openTransactionFormModal(context),
+          icon: const Icon(Icons.add),
+        ),
+      ],
+    );
+
+    final availableHeight = mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(
-              recentTransactions: _recentTransactions,
-            ),
-            TransactionList(
-              transactions: _transactions,
-              onRemove: _removeTransaction,
-            ),
+            // if (isLandScape)
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       const Text('Exibir Gráfico'),
+            //       Switch(
+            //         value: _showChart,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _showChart = value;
+            //           });
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            if (_showChart || !isLandScape)
+              SizedBox(
+                height: availableHeight * (isLandScape ? 0.75 : 0.25),
+                child: Chart(
+                  recentTransactions: _recentTransactions,
+                ),
+              ),
+            if (!_showChart || !isLandScape)
+              SizedBox(
+                height: availableHeight * (isLandScape ? 1 : 0.75),
+                child: TransactionList(
+                  transactions: _transactions,
+                  onRemove: _removeTransaction,
+                ),
+              ),
           ],
         ),
       ),
