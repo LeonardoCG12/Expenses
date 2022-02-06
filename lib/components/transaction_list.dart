@@ -16,6 +16,8 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return transactions.isEmpty
         ? LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
@@ -86,11 +88,20 @@ class TransactionList extends StatelessWidget {
                     ),
                     child: Text(DateFormat('dd/MM/y').format(tr.date)),
                   ),
-                  trailing: IconButton(
-                    onPressed: () => onRemove(tr.id),
-                    icon: const Icon(Icons.delete),
-                    color: Theme.of(context).errorColor,
-                  ),
+                  trailing: MediaQuery.of(context).size.width > 420
+                      ? TextButton.icon(
+                          onPressed: () => onRemove(tr.id),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Excluir'),
+                          style: TextButton.styleFrom(
+                            primary: theme.errorColor,
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () => onRemove(tr.id),
+                          icon: const Icon(Icons.delete),
+                          color: theme.errorColor,
+                        ),
                 ),
               );
             },
