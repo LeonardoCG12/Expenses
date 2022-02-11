@@ -17,11 +17,19 @@ class AdaptativeDatePicker extends StatelessWidget {
 
   void _showDatePicker(BuildContext context) {
     showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(DateTime.now().year - 2),
-      lastDate: DateTime(DateTime.now().year + 2),
-    ).then((pickedDate) {
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(DateTime.now().year - 2),
+        lastDate: DateTime(DateTime.now().year + 2),
+        builder: (BuildContext context, Widget? child) => Theme(
+              data: ThemeData().copyWith(
+                colorScheme: ColorScheme.fromSwatch().copyWith(
+                  primary: const Color(0xFF13400C),
+                ),
+                dialogBackgroundColor: const Color(0xFFCFCFCF),
+              ),
+              child: child!,
+            )).then((pickedDate) {
       if (pickedDate != null) {
         onDateChange(pickedDate);
       }
@@ -34,6 +42,7 @@ class AdaptativeDatePicker extends StatelessWidget {
         ? SizedBox(
             height: MediaQuery.of(context).size.height * 0.26,
             child: CupertinoDatePicker(
+              backgroundColor: const Color(0xFFCFCFCF),
               mode: CupertinoDatePickerMode.date,
               initialDateTime: DateTime.now(),
               minimumDate: DateTime(DateTime.now().year - 2),

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:expenses/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions;
+  final List<Transactions> transactions;
   final void Function(String) onRemove;
 
   const TransactionList({
@@ -30,6 +30,7 @@ class TransactionList extends StatelessWidget {
                     const Text(
                       'Nenhuma Transação Cadastrada',
                       style: TextStyle(
+                        color: Color(0xFFFFFFFF),
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
                       ),
@@ -55,6 +56,7 @@ class TransactionList extends StatelessWidget {
               final tr = transactions[index];
 
               return Card(
+                color: const Color(0xFFCFCFCF),
                 elevation: 6,
                 margin: const EdgeInsets.symmetric(
                   horizontal: 5,
@@ -62,6 +64,7 @@ class TransactionList extends StatelessWidget {
                 ),
                 child: ListTile(
                   leading: CircleAvatar(
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     radius: 30,
                     child: Padding(
                       padding: const EdgeInsets.all(6),

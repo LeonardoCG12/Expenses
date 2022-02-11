@@ -4,7 +4,7 @@ import 'package:expenses/models/transaction.dart';
 import 'package:expenses/components/chart_bar.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> recentTransactions;
+  final List<Transactions> recentTransactions;
 
   const Chart({
     Key? key,
@@ -52,6 +52,7 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color(0xFFCFCFCF),
       elevation: 6,
       margin: const EdgeInsets.all(20),
       child: Padding(

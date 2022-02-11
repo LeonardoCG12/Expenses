@@ -34,6 +34,7 @@ class _TransactionFormState extends State<TransactionForm> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color(0xFFCFCFCF),
       elevation: 6,
       child: Padding(
         padding: const EdgeInsets.all(10),

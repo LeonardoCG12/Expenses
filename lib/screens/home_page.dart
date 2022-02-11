@@ -19,10 +19,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [];
+  final List<Transactions> _transactions = [];
   bool _showChart = false;
 
-  List<Transaction> get _recentTransactions {
+  List<Transactions> get _recentTransactions {
     return _transactions.where(
       (tr) {
         return tr.date.isAfter(DateTime.now().subtract(
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _addTransaction(String title, double value, DateTime date) {
-    final newTransaction = Transaction(
+    final newTransaction = Transactions(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
 
   void _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: const Color(0xFF9E9E9E),
       context: context,
       isScrollControlled: true,
       builder: (_) => Column(

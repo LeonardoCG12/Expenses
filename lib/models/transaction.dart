@@ -1,10 +1,10 @@
-class Transaction {
+class Transactions {
   final String id;
   final String title;
   final double value;
   final DateTime date;
 
-  Transaction({
+  Transactions({
     required this.id,
     required this.title,
     required this.value,
