@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:expenses/screens/home_page.dart';
+import 'package:expenses/utils/db.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DB.instance.database;
+  await Future.delayed(
+    const Duration(
+      seconds: 1,
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -21,9 +29,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF9E9E9E),
         colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: const Color(0xFF13400C),
+          background: const Color(0xFFFFFFFF),
         ),
         appBarTheme: const AppBarTheme(
           color: Color(0xFF13400C),
+          foregroundColor: Color(0xFFFFFFFF),
+          iconTheme: IconThemeData(color: Color(0xFFFFFFFF)),
           titleTextStyle: TextStyle(
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
@@ -46,7 +57,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          elevation: 6,
           backgroundColor: Color(0xFF13400C),
+          foregroundColor: Color(0xFFFFFFFF),
         ),
         errorColor: const Color(0xFFC40000),
         textTheme: const TextTheme(

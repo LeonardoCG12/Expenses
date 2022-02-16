@@ -6,6 +6,7 @@ import 'package:expenses/models/transaction.dart';
 import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/components/transaction_form.dart';
+import 'package:expenses/utils/db.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -19,42 +20,45 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transactions> _transactions = [];
+  late List<Transactions> _transactions;
+
   bool _showChart = false;
 
-  List<Transactions> get _recentTransactions {
-    return _transactions.where(
-      (tr) {
-        return tr.date.isAfter(DateTime.now().subtract(
-          const Duration(
-            days: 7,
-          ),
-        ));
-      },
-    ).toList();
+  @override
+  void initState() {
+    super.initState();
+    DB.instance.database.whenComplete(() {
+      _onRefresh();
+    });
   }
 
-  void _addTransaction(String title, double value, DateTime date) {
+  @override
+  void dispose() {
+    DB.instance.close();
+    super.dispose();
+  }
+
+  Future<void> _onRefresh() async {
+    _transactions = await DB.instance.getList();
+    setState(() {});
+  }
+
+  Future<void> _removeTransaction(double id) async {
+    await DB.instance.removeList(id);
+    _onRefresh();
+  }
+
+  Future<void> _addTransaction(String title, double value, int date) async {
     final newTransaction = Transactions(
-      id: Random().nextDouble().toString(),
+      id: Random().nextDouble(),
       title: title,
       value: value,
       date: date,
     );
 
-    setState(() {
-      _transactions.add(newTransaction);
-    });
-
+    DB.instance.addList(newTransaction);
     Navigator.of(context).pop();
-  }
-
-  void _removeTransaction(String id) {
-    setState(() {
-      _transactions.removeWhere((tr) {
-        return tr.id == id;
-      });
-    });
+    _onRefresh();
   }
 
   void _openTransactionFormModal(BuildContext context) {
@@ -142,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: availableHeight * (isLandScape ? 0.75 : 0.25),
                 child: Chart(
-                  recentTransactions: _recentTransactions,
+                  recentTransactions: _transactions,
                 ),
               ),
             if (!_showChart || !isLandScape)

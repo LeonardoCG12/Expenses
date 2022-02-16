@@ -26,9 +26,18 @@ class Chart extends StatelessWidget {
         double totalSum = 0.0;
 
         for (var i = 0; i < recentTransactions.length; i++) {
-          bool sameDay = recentTransactions[i].date.day == weekDay.day;
-          bool sameMonth = recentTransactions[i].date.month == weekDay.month;
-          bool sameYear = recentTransactions[i].date.year == weekDay.year;
+          bool sameDay =
+              DateTime.fromMillisecondsSinceEpoch(recentTransactions[i].date)
+                      .day ==
+                  weekDay.day;
+          bool sameMonth =
+              DateTime.fromMillisecondsSinceEpoch(recentTransactions[i].date)
+                      .month ==
+                  weekDay.month;
+          bool sameYear =
+              DateTime.fromMillisecondsSinceEpoch(recentTransactions[i].date)
+                      .year ==
+                  weekDay.year;
 
           if (sameDay && sameMonth && sameYear) {
             totalSum += recentTransactions[i].value;
@@ -60,8 +69,7 @@ class Chart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactions.map((tr) {
-            return Flexible(
-              fit: FlexFit.tight,
+            return Expanded(
               child: ChartBar(
                 label: tr['day'].toString(),
                 value: tr['value'] as double,

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 class AdaptativeDatePicker extends StatelessWidget {
-  final DateTime? selectedDate;
+  final int? selectedDate;
   final Function(DateTime) onDateChange;
 
   const AdaptativeDatePicker({
@@ -60,7 +60,10 @@ class AdaptativeDatePicker extends StatelessWidget {
                   child: Text(
                     selectedDate == null
                         ? 'Nenhuma data selecionada'
-                        : 'Data: ${DateFormat('dd/MM/y').format(selectedDate!)}',
+                        : 'Data: ' +
+                            DateFormat('dd/MM/y').format(
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    selectedDate!)),
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
