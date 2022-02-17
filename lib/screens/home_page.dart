@@ -21,7 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late List<Transactions> _transactions;
-
   bool _showChart = false;
 
   @override
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       date: date,
     );
 
-    DB.instance.addList(newTransaction);
+    await DB.instance.addList(newTransaction);
     Navigator.of(context).pop();
     _onRefresh();
   }

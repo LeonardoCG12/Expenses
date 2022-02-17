@@ -1,5 +1,0 @@
-flutter_native_splash:
-  background_image: 'assets/images/logo_icon_bg.png'
-  image: 'assets/images/logo_icon_fg.png'
-  android: true
-  ios: true

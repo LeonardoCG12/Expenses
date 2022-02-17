@@ -51,6 +51,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        cardTheme: const CardTheme(
+          color: Color(0xFFCFCFCF),
+          elevation: 6,
+          clipBehavior: Clip.antiAlias,
+          margin: EdgeInsets.symmetric(
+            horizontal: 5,
+            vertical: 8,
+          ),
+        ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             primary: const Color(0xFF13400C),

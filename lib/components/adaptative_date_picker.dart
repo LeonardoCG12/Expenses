@@ -21,6 +21,7 @@ class AdaptativeDatePicker extends StatelessWidget {
         initialDate: DateTime.now(),
         firstDate: DateTime(DateTime.now().year - 2),
         lastDate: DateTime(DateTime.now().year + 2),
+        initialEntryMode: DatePickerEntryMode.calendarOnly,
         builder: (BuildContext context, Widget? child) => Theme(
               data: ThemeData().copyWith(
                 colorScheme: ColorScheme.fromSwatch().copyWith(

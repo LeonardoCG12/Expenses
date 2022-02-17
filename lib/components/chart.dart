@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:expenses/components/chart_bar.dart';
 
@@ -45,7 +46,7 @@ class Chart extends StatelessWidget {
         }
 
         return {
-          'day': DateFormat.E().format(weekDay)[0],
+          'day': DateFormat.E('pt_BR').format(weekDay).toUpperCase(),
           'value': totalSum,
         };
       },
@@ -60,6 +61,8 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting();
+
     return Card(
       color: const Color(0xFFCFCFCF),
       elevation: 6,
