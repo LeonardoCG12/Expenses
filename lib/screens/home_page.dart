@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<Transactions> _transactions;
+  List<Transactions> _transactions = [];
   bool _showChart = false;
 
   @override
