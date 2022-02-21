@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    DB.instance.close();
     super.dispose();
+    DB.instance.close();
   }
 
   Future<void> _onRefresh() async {
